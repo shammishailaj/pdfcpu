@@ -62,18 +62,18 @@ func (ctx *Context) ResetWriteContext() {
 	ctx.Write = NewWriteContext(ctx.Write.Eol)
 }
 
-func (rCtx *ReadContext) logReadContext(logStr []string) {
-	if rCtx.UsingObjectStreams {
-		logStr = append(logStr, "using object streams\n")
+func (rc *ReadContext) logReadContext(logStr *[]string) {
+	if rc.UsingObjectStreams {
+		*logStr = append(*logStr, "using object streams\n")
 	}
-	if rCtx.UsingXRefStreams {
-		logStr = append(logStr, "using xref streams\n")
+	if rc.UsingXRefStreams {
+		*logStr = append(*logStr, "using xref streams\n")
 	}
-	if rCtx.Linearized {
-		logStr = append(logStr, "is linearized file\n")
+	if rc.Linearized {
+		*logStr = append(*logStr, "is linearized file\n")
 	}
-	if rCtx.Hybrid {
-		logStr = append(logStr, "is hybrid reference file\n")
+	if rc.Hybrid {
+		*logStr = append(*logStr, "is hybrid reference file\n")
 	}
 }
 
@@ -90,7 +90,7 @@ func (ctx *Context) String() string {
 
 	logStr = append(logStr, fmt.Sprintf("has %d pages\n", ctx.PageCount))
 
-	ctx.Read.logReadContext(logStr)
+	ctx.Read.logReadContext(&logStr)
 
 	if ctx.Tagged {
 		logStr = append(logStr, "is tagged file\n")
@@ -137,9 +137,8 @@ func (ctx *Context) String() string {
 
 	// Print list of any missing objects.
 	if len(ctx.XRefTable.Table) < *ctx.XRefTable.Size {
-		missing, s := ctx.MissingObjects()
-		if missing > 0 {
-			logStr = append(logStr, fmt.Sprintf("%d missing objects: %s\n", missing, *s))
+		if count, mstr := ctx.MissingObjects(); count > 0 {
+			logStr = append(logStr, fmt.Sprintf("%d missing objects: %s\n", count, *mstr))
 		}
 	}
 

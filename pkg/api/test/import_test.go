@@ -27,7 +27,7 @@ import (
 func testImportImages(t *testing.T, msg string, imgFiles []string, outFile, impConf string, ensureOutFile bool) {
 	t.Helper()
 	var err error
-
+	outDir := "../../samples/import"
 	outFile = filepath.Join(outDir, outFile)
 	if ensureOutFile {
 		// We want to test appending to an existing PDF.
@@ -58,33 +58,29 @@ func TestImportImages(t *testing.T) {
 		impConf       string
 		ensureOutFile bool
 	}{
-		// Convert an image into a single page PDF.
-		// The page dimensions will match the image dimensions.
+		//Convert an image into a single page PDF.
+		//The page dimensions will match the image dimensions.
 		{"TestConvertImageToPDF",
-			[]string{filepath.Join(resDir, "pdfchip3.png")},
-			"testConvertImage.pdf",
+			[]string{filepath.Join(resDir, "logoSmall.png")},
+			"convertImage.pdf",
 			"",
 			false},
 
 		// Import an image as a new page of the existing output file.
-		{"TestImportImage",
-			[]string{filepath.Join(resDir, "pdfchip3.png")},
-			"Acroforms2.pdf",
-			"",
-			true},
+		// {"TestImportImage",
+		// 	[]string{filepath.Join(resDir, "logoSmall.png")},
+		// 	"importImage.pdf",
+		// 	"",
+		// 	true},
 
-		// Import images by creating an A3 page for each image.
-		// Images are page centered with 1.0 relative scaling.
-		// Import an image as a new page of the existing output file.
+		//Import images by creating an A3 page for each image.
+		//Images are page centered with 1.0 relative scaling.
+		//Import an image as a new page of the existing output file.
 		{"TestCenteredImportImage",
-			[]string{
-				filepath.Join(resDir, "pdfchip3.png"),
-				filepath.Join(resDir, "demo.png"),
-				filepath.Join(resDir, "snow.jpg"),
-			},
-			"Acroforms2.pdf",
+			imageFileNames(t, "../../../resources"),
+			"importImageToA3.pdf",
 			"f:A3, pos:c, s:1.0",
-			true},
+			false},
 	} {
 		testImportImages(t, tt.msg, tt.imgFiles, tt.outFile, tt.impConf, tt.ensureOutFile)
 	}

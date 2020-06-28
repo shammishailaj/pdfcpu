@@ -26,6 +26,7 @@ This is an effort to build a comprehensive PDF processing library from the groun
   <kbd><a href="https://pdfcpu.io/core/watermark"><img src="resources/wmi4.png" height="150"></a></kbd>&nbsp;<br><br>
   <kbd><a href="https://pdfcpu.io/core/stamp"><img src="resources/stp.png" height="150"></a></kbd>&nbsp;
   <kbd><a href="https://pdfcpu.io/core/grid"><img src="resources/gridimg.png" height="150"></a></kbd>
+  <kbd><a href="https://pdfcpu.io/core/stamp"><img src="resources/stRoundBorder.png" height="150"></a></kbd>
 </p>
 
 ## Focus
@@ -94,7 +95,7 @@ Get the latest binary [here](https://github.com/pdfcpu/pdfcpu/releases).
 
 ### Using GOPATH
 
-Required go version for building: go1.13 and up
+Required go version for building: go1.14 and up
 
 ```
 go get github.com/pdfcpu/pdfcpu/cmd/...
@@ -109,18 +110,16 @@ pdfcpu version
 git clone https://github.com/pdfcpu/pdfcpu
 cd pdfcpu/cmd/pdfcpu
 go install
-pdfcpu ve
+pdfcpu version
 ```
 
-## Note
-We transferred this repo to the [pdfcpu organisation](https://github.com/pdfcpu).
-All links to the previous repository location are automatically redirected to the new location.
-However, to avoid confusion, we strongly recommend updating any existing local clones to point to the new repository URL. You can do this by using git remote on the command line:
+### Using Homebrew (macOS)
 ```
-git remote set-url origin https://github.com/pdfcpu/pdfcpu
+brew install pdfcpu
+pdfcpu version
 ```
 
-## Using Docker
+### Run in a Docker container
 
 ```
 docker build -t pdfcpu .
@@ -171,8 +170,8 @@ Thanks goes to these wonderful people:
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 ||||||||
 | :---: | :---: | :---: | :---: | :---: |  :---: | :---: |
-| [<img src="https://avatars1.githubusercontent.com/u/11322155?v=4" width="100px"/><br /><sub><b>Horst Rutter</b></sub>](https://github.com/hhrutter)<br /> |[<img src="https://avatars0.githubusercontent.com/u/5140211?v=4" width="100px"/><br /><sub><b>haldyr</b></sub>](https://github.com/haldyr)<br /> | [<img src="https://avatars3.githubusercontent.com/u/20608155?v=4" width="100px"/><br /><sub><b>Vyacheslav</b></sub>](https://github.com/SimePel)<br /> | [<img src="https://avatars1.githubusercontent.com/u/617459?v=4" width="100px"/><br /><sub><b>Erik Unger</b></sub>](https://github.com/ungerik)<br /> | [<img src="https://avatars1.githubusercontent.com/u/13079058?v=4" width="100px"/><br /><sub><b>Richard Wilkes</b></sub>](https://github.com/richardwilkes)<br /> | [<img src="https://avatars1.githubusercontent.com/u/16303386?s=400&v=4" width="100px"/><br /><sub><b>minenok-tutu</b></sub>](https://github.com/minenok-tutu)<br /> | [<img src="https://avatars0.githubusercontent.com/u/1965445?s=400&v=4" width="100px"/><br /><sub><b>Mateusz Burniak</b></sub>](https://github.com/matbur)<br /> |
-| [<img src="https://avatars2.githubusercontent.com/u/1175110?s=400&v=4" width="100px"/><br /><sub><b>Dmitry Harnitski</b></sub>](https://github.com/dharnitski)<br /> |[<img src="https://avatars0.githubusercontent.com/u/1074083?s=400&v=4" width="100px"/><br /><sub><b>ryarnyah</b></sub>](https://github.com/ryarnyah)<br /> |[<img src="https://avatars0.githubusercontent.com/u/13267?s=400&v=4" width="100px"/><br /><sub><b>Sam Giffney</b></sub>](https://github.com/s01ipsist)<br /> |[<img src="https://avatars3.githubusercontent.com/u/32948066?s=400&v=4" width="100px"/><br /><sub><b>Carlos Eduardo Witte</b></sub>](https://github.com/cewitte)<br /> 
+| [<img src="https://avatars1.githubusercontent.com/u/11322155?v=4" width="100px"/><br/><sub><b>Horst Rutter</b></sub>](https://github.com/hhrutter) | [<img src="https://avatars0.githubusercontent.com/u/5140211?v=4" width="100px"/><br/><sub><b>haldyr</b></sub>](https://github.com/haldyr) | [<img src="https://avatars3.githubusercontent.com/u/20608155?v=4" width="100px"/><br/><sub><b>Vyacheslav</b></sub>](https://github.com/SimePel) | [<img src="https://avatars1.githubusercontent.com/u/617459?v=4" width="100px"/><br/><sub><b>Erik Unger</b></sub>](https://github.com/ungerik) | [<img src="https://avatars1.githubusercontent.com/u/13079058?v=4" width="100px"/><br/><sub><b>Richard Wilkes</b></sub>](https://github.com/richardwilkes) | [<img src="https://avatars1.githubusercontent.com/u/16303386?s=400&v=4" width="100px"/><br/><sub><b>minenok-tutu</b></sub>](https://github.com/minenok-tutu) | [<img src="https://avatars0.githubusercontent.com/u/1965445?s=400&v=4" width="100px"/><br/><sub><b>Mateusz Burniak</b></sub>](https://github.com/matbur) |
+| [<img src="https://avatars2.githubusercontent.com/u/1175110?s=400&v=4" width="100px"/><br/><sub><b>Dmitry Harnitski</b></sub>](https://github.com/dharnitski) | [<img src="https://avatars0.githubusercontent.com/u/1074083?s=400&v=4" width="100px"/><br/><sub><b>ryarnyah</b></sub>](https://github.com/ryarnyah) | [<img src="https://avatars0.githubusercontent.com/u/13267?s=400&v=4" width="100px"/><br/><sub><b>Sam Giffney</b></sub>](https://github.com/s01ipsist) | [<img src="https://avatars3.githubusercontent.com/u/32948066?s=400&v=4" width="100px"/><br /><sub><b>Carlos Eduardo Witte</b></sub>](https://github.com/cewitte) | [<img src="https://avatars1.githubusercontent.com/u/2374948?s=400&u=a36e5f8da8dc1c102bc4d283f25e4c61cae7f985&v=4" width="100px"/><br/><sub><b>minusworld</b></sub>](https://github.com/minusworld) 
 <!-- ALL-CONTRIBUTORS-LIST:END - Do not remove or modify this section -->
 
 ## Code of Conduct

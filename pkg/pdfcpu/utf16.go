@@ -24,7 +24,6 @@ import (
 
 	"strings"
 
-	"github.com/pdfcpu/pdfcpu/pkg/log"
 	"github.com/pkg/errors"
 )
 
@@ -35,41 +34,27 @@ func IsStringUTF16BE(s string) bool {
 
 	ok := strings.HasPrefix(s1, "\376\377") // 0xFE 0xFF
 
-	log.Debug.Printf("IsStringUTF16BE: <%s> returning %v\n", s1, ok)
-	log.Debug.Printf("\n%s", hex.Dump([]byte(s1)))
+	//log.Debug.Printf("IsStringUTF16BE: <%s> returning %v\n", s1, ok)
+	//log.Debug.Printf("\n%s", hex.Dump([]byte(s1)))
 
 	return ok
 }
 
 // IsUTF16BE checks for Big Endian byte order mark.
-func IsUTF16BE(b []byte) (ok bool, err error) {
-
+func IsUTF16BE(b []byte) bool {
 	if len(b) == 0 {
-		return false, nil
+		return false
 	}
-
-	if len(b)%2 != 0 {
-		return false, errors.Errorf("DecodeUTF16String: UTF16 needs even number of bytes: %v\n", b)
-	}
-
 	// Check BOM
-	ok = b[0] == 0xFE && b[1] == 0xFF
-
-	return ok, nil
+	return b[0] == 0xFE && b[1] == 0xFF
 }
 
 func decodeUTF16String(b []byte) (s string, err error) {
 
 	//log.Debug.Printf("decodeUTF16String: begin %v\n", b)
 
-	// Check for Big Endian UTF-16.
-	isUTF16BE, err := IsUTF16BE(b)
-	if err != nil {
-		return
-	}
-
 	// We only accept big endian byte order.
-	if !isUTF16BE {
+	if !IsUTF16BE(b) {
 		err = errors.Errorf("decodeUTF16String: not UTF16BE: %v\n", b)
 		return
 	}
@@ -171,12 +156,7 @@ func HexLiteralToString(hexString string) (string, error) {
 	}
 
 	// Check for Big Endian UTF-16.
-	isUTF16BE, err := IsUTF16BE(b)
-	//if err != nil {
-	//	return "", err
-	//}
-
-	if isUTF16BE {
+	if IsUTF16BE(b) {
 		return decodeUTF16String(b)
 	}
 

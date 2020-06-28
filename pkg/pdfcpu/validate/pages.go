@@ -108,9 +108,10 @@ func validatePageResources(xRefTable *pdf.XRefTable, d pdf.Dict, hasResources, h
 		return err
 	}
 
-	if !hasResources && hasContents {
-		return errors.New("pdfcpu: validatePageResources: missing required entry \"Resources\" - should be inheritated")
-	}
+	// TODO Check if contents need resources (#169)
+	// if !hasResources && hasContents {
+	// 	return errors.New("pdfcpu: validatePageResources: missing required entry \"Resources\" - should be inheritated")
+	// }
 
 	return nil
 }
@@ -451,8 +452,7 @@ func validatePageEntrySeparationInfo(xRefTable *pdf.XRefTable, pagesDict pdf.Dic
 
 func validatePageEntryTabs(xRefTable *pdf.XRefTable, d pdf.Dict, required bool, sinceVersion pdf.Version) error {
 
-	// Include out of spec entry "W"
-	validateTabs := func(s string) bool { return pdf.MemberOf(s, []string{"R", "C", "S", "W"}) }
+	validateTabs := func(s string) bool { return pdf.MemberOf(s, []string{"R", "C", "S", "A", "W"}) }
 
 	if xRefTable.ValidationMode == pdf.ValidationRelaxed {
 		sinceVersion = pdf.V14
